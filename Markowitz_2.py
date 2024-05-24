@@ -64,7 +64,7 @@ class MyPortfolio:
 
     def calculate_weights(self):
         # Get the assets by excluding the specified column
-        assets = self.price.columns[self.price.columns != self.exclude]
+        asset = self.price.columns[self.price.columns != self.exclude]
 
         # Calculate the portfolio weights
         self.portfolio_weights = pd.DataFrame(
@@ -74,7 +74,10 @@ class MyPortfolio:
         """
         TODO: Complete Task 4 Below
         """
-
+        for i in range(len(self.price)):
+            self.portfolio_weights.iloc[i][assets] = 0
+            self.portfolio_weights.iloc[i][assets[np.argmax(self.returns.iloc[i])]] = 1
+        print(self.portfolio_weights)
         """
         TODO: Complete Task 4 Above
         """
